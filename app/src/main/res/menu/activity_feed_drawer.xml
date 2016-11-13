@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/ic_notifications_black_24dp"
+            android:title="@string/nav_notifications"/>
+        <item
+            android:id="@+id/nav_social"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="@string/nav_social"/>
+        <item
+            android:id="@+id/nav_trending"
+            android:icon="@drawable/ic_trending_up_black_24dp"
+            android:title="@string/nav_trending"/>
+        <item
+            android:id="@+id/nav_starred"
+            android:icon="@drawable/ic_grade_black_24dp"
+            android:title="@string/nav_starred"/>
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_share_black_24dp"
+            android:title="@string/nav_share"/>
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/nav_settings"/>
+    </group>
+
+</menu>

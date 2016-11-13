@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:gravity="center_vertical"
+                android:id="@+id/list_item_feeds_layout">
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/simple_imageView"
+        android:background="@drawable/oval_shape"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/simple_imageView"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        tools:text="Feeds"
+        android:id="@+id/list_feeds_textView"/>
+</RelativeLayout>
