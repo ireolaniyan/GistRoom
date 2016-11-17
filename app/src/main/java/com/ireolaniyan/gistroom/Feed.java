@@ -8,6 +8,7 @@ import java.util.UUID;
 public class Feed {
     private UUID mId;
     private String mFeed;
+    private boolean mStarred;
 //    private Image mImage;
 
     public Feed() {
@@ -34,4 +35,12 @@ public class Feed {
     public void setImage(Image image) {
         mImage = image;
     }*/
+
+    public boolean isStarred() {
+        return mStarred;
+    }
+
+    public void setStarred(boolean starred) {
+        mStarred = starred;
+    }
 }

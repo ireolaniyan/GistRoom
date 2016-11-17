@@ -1,9 +1,11 @@
 package com.ireolaniyan.gistroom;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.ireolaniyan.gistroom.database.FeedsBaseHelper;
+import com.ireolaniyan.gistroom.database.FeedsDbSchema;
+import com.ireolaniyan.gistroom.database.FeedsDbSchema.FeedTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +42,34 @@ public class FeedsLab {
 */
     }
 
+//    Adding rows to the database.
+    public void addFeed(Feed f){
+        ContentValues values = getContentValues(f);
+        mDatabase.insert(FeedTable.NAME, null, values);
+    }
+
     public List<Feed> getFeeds(){
         return new ArrayList<>();
     }
 
     public Feed getFeed(UUID id){
         return null;
+    }
+
+    public void updateFeed(Feed feed){
+        String uuidString = feed.getId().toString();
+        ContentValues values = getContentValues(feed);
+
+    }
+
+//    ContentValues method Handles writes and updates to database.
+//    Shuttling a Feed into a ContentValues
+    private static ContentValues getContentValues(Feed feed){
+        ContentValues values = new ContentValues();
+        values.put(FeedTable.Cols.UUID, feed.getId().toString());
+//        values.put(FeedTable.Cols.STARRED, feed.isStarred() ? 1 : 0);
+        values.put(FeedTable.Cols.FEED, feed.getFeed());
+
+        return values;
     }
 }

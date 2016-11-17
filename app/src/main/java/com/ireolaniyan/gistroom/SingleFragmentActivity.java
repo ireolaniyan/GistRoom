@@ -3,16 +3,13 @@ package com.ireolaniyan.gistroom;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 /**
@@ -20,7 +17,10 @@ import android.widget.Toast;
  */
 public abstract class SingleFragmentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+    public  FloatingActionButton fab;
     protected abstract Fragment createFragment();
+//    Constant for ComposeGistFragment's tag.
+//    private static final String DIALOG_COMPOSE = "DialogCompose";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +42,17 @@ public abstract class SingleFragmentActivity extends AppCompatActivity
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+       fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+                ComposeGistFragment dialog = new ComposeGistFragment();
+                dialog.show(manager, DIALOG_COMPOSE);
+               *//* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*//*
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 

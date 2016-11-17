@@ -16,13 +16,13 @@ public class FeedsBaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, VERSION);
     }
 
-//    Create the initial database
+    //    Create the initial database
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + FeedTable.NAME + "(" +
                     "_id integer primary key autoincrement, " +
                     FeedTable.Cols.UUID + ", " +
-                    FeedTable.Cols.TITLE + ", " +
+                    FeedTable.Cols.FEED + ", " +
                     FeedTable.Cols.DATE + ", " +
                     FeedTable.Cols.STARRED +
                     ")"

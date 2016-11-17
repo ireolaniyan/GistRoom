@@ -18,15 +18,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.List;
 
 /**
  * Created by Ire Olaniyan on 11/6/2016.
  */
 public class FeedsListFragment extends Fragment {
+    private Feed mFeed;
     private RecyclerView mFeedsRecyclerView;
     private FeedsAdapter mAdapter;
+//        Constant for ComposeGistFragment's tag.
+    private static final String DIALOG_COMPOSE = "DialogCompose";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class FeedsListFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    //    Creating a recycler view.
+//        Creating a recycler view.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_feeds_list, container, false);
@@ -73,6 +76,34 @@ public class FeedsListFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+//    Setting a different fab action for this fragment.
+//    Prevent getActivity() from returning null while extending fab.
+    @Override
+    public void setUserVisibleHint(boolean visible) {
+        super.setUserVisibleHint(visible);
+        if (visible && isResumed()) {
+            onResume();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!getUserVisibleHint()) {
+            return;
+        }
+
+        SingleFragmentActivity activity = (SingleFragmentActivity)getActivity();
+        activity.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.support.v4.app.FragmentManager manager = getFragmentManager();
+                ComposeGistFragment dialog = ComposeGistFragment.newInstance(mFeed.getFeed());
+                dialog.show(manager, DIALOG_COMPOSE);
+            }
+        });
+    }
+
 /*
 
 //    Creating a circle-shaped bitmap.
@@ -98,7 +129,7 @@ public class FeedsListFragment extends Fragment {
 */
 
 
-    //        Defining the ViewHolder.
+//            Defining the ViewHolder.
     private class FeedsHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mFeedsTextView;
         private ImageView mImageView;
@@ -142,7 +173,7 @@ public class FeedsListFragment extends Fragment {
             mFeeds = feeds;
         }
 
-        //        Called by the RecyclerView when it needs a new View to display an item.
+//                Called by the RecyclerView when it needs a new View to display an item.
         @Override
         public FeedsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
@@ -150,7 +181,7 @@ public class FeedsListFragment extends Fragment {
             return new FeedsHolder(view);
         }
 
-        //        Bind a ViewHolder’s View to your model object.
+//                Bind a ViewHolder’s View to your model object.
         @Override
         public void onBindViewHolder(FeedsHolder holder, int position) {
             Feed feed = mFeeds.get(position);
