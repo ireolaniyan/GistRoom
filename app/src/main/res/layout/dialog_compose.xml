@@ -4,5 +4,4 @@
                 android:layout_height="match_parent"
                 android:id="@+id/dialog_compose_gist"
                 android:hint="What&apos;s the latest gist?">
-
 </EditText>

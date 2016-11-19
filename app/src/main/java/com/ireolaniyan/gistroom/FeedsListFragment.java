@@ -29,6 +29,8 @@ public class FeedsListFragment extends Fragment {
     private FeedsAdapter mAdapter;
 //        Constant for ComposeGistFragment's tag.
     private static final String DIALOG_COMPOSE = "DialogCompose";
+//    The target fragment can use the request code to identify which fragment is reporting back.
+    private static final int REQUEST_FEED = 0;
 
 
     @Override
@@ -98,7 +100,10 @@ public class FeedsListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 android.support.v4.app.FragmentManager manager = getFragmentManager();
-                ComposeGistFragment dialog = ComposeGistFragment.newInstance(mFeed.getFeed());
+                ComposeGistFragment dialog = new ComposeGistFragment();
+
+//                Set this fragment as the target fragment.ie changes made to the dialog are shown here.
+                dialog.setTargetFragment(FeedsListFragment.this, REQUEST_FEED);
                 dialog.show(manager, DIALOG_COMPOSE);
             }
         });

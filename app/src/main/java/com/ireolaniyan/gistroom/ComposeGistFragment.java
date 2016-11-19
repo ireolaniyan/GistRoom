@@ -16,52 +16,24 @@ import android.widget.EditText;
 public class ComposeGistFragment extends DialogFragment {
 
     private Feed mFeed;
-    private static final String ARG_FEED = "feed";
-    private EditText mComposeField;
-
-    /* To get data into ComposeGistFragment, stash the feed in ComposeGistFragment’s
-    arguments bundle, where the ComposeGistFragment can access it. This is typically done in a
-    newInstance() method that replaces the fragment constructor */
-    public static ComposeGistFragment newInstance(String feed){
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_FEED, feed);
-
-        ComposeGistFragment fragment = new ComposeGistFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
 //        Inflating the view:
 // dialog_compose.xml
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_compose, null);
 
-        mComposeField = (EditText) v.findViewById(R.id.dialog_compose_gist);
-
-        mComposeField.setText(mFeed.getFeed());
-
-//        Text input
-        mComposeField.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mFeed.setFeed(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         return new AlertDialog.Builder(getActivity())
                 .setView(v)   /*configures the dialog to display the passed-in View object between the dialog’s title and its button*/
                 .setTitle(R.string.compose_gist_title)
                 .setPositiveButton(android.R.string.ok, null)
                 .create();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        FeedsLab.get(getActivity())
+                .updateFeed(mFeed);
     }
 }

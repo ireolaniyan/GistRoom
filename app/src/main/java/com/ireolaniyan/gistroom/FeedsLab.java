@@ -32,7 +32,7 @@ public class FeedsLab {
 //        Opening the SQLiteDatabase
         mContext = context.getApplicationContext();
         mDatabase = new FeedsBaseHelper(mContext).getWritableDatabase();
-        /* When you call getWritableDatabase()here, FeedsBaseHelper will do the following:
+        /* When you call getWritableDatabase() here, FeedsBaseHelper will do the following:
         1. Open up /data/data/com.ireolaniyan.gistroom/databases/feedsBase.db,
         creating a new database file if it does not already exist.
         2. If this is the first time the database has been created, call onCreate(SQLiteDatabase), then save
@@ -56,10 +56,16 @@ public class FeedsLab {
         return null;
     }
 
+//    Updating a feed
     public void updateFeed(Feed feed){
         String uuidString = feed.getId().toString();
         ContentValues values = getContentValues(feed);
 
+        /*specify which rows get updated. You do that by building a where clause (the third argument),
+        and then specifying values for the arguments in the where clause (the final String[]array).*/
+        mDatabase.update(FeedTable.NAME, values,
+                FeedTable.Cols.UUID + " = ?",
+                new String[] {uuidString});
     }
 
 //    ContentValues method Handles writes and updates to database.
