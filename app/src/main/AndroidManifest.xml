@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignInActivity"
+            android:name=".signup.SignUpActivity"
             android:label="SignInActivity"
             android:theme="@style/AppTheme">
         </activity>

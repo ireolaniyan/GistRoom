@@ -22,9 +22,9 @@ public class FeedsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static FeedsFragment newInstance(UUID crimeId) {
+    public static FeedsFragment newInstance(UUID feedId) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_FEED_ID, crimeId);
+        args.putSerializable(ARG_FEED_ID, feedId);
         FeedsFragment fragment = new FeedsFragment();
         fragment.setArguments(args);
         return fragment;

@@ -2,6 +2,7 @@ package com.ireolaniyan.gistroom;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.ireolaniyan.gistroom.database.FeedsBaseHelper;
 import com.ireolaniyan.gistroom.database.FeedsDbSchema;
@@ -61,8 +62,10 @@ public class FeedsLab {
         String uuidString = feed.getId().toString();
         ContentValues values = getContentValues(feed);
 
-        /*specify which rows get updated. You do that by building a where clause (the third argument),
-        and then specifying values for the arguments in the where clause (the final String[]array).*/
+/*
+        specify which rows get updated. You do that by building a where clause (the third argument),
+        and then specifying values for the arguments in the where clause (the final String[]array).
+*/
         mDatabase.update(FeedTable.NAME, values,
                 FeedTable.Cols.UUID + " = ?",
                 new String[] {uuidString});
@@ -77,5 +80,19 @@ public class FeedsLab {
         values.put(FeedTable.Cols.FEED, feed.getFeed());
 
         return values;
+    }
+
+    private Cursor queryCrimes(String whereClause, String[] whereArgs){
+        Cursor cursor = mDatabase.query(
+                FeedTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null
+        );
+
+        return cursor;
     }
 }

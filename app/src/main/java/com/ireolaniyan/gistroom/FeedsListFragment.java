@@ -1,5 +1,6 @@
 package com.ireolaniyan.gistroom;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,7 +28,6 @@ public class FeedsListFragment extends Fragment {
     private Feed mFeed;
     private RecyclerView mFeedsRecyclerView;
     private FeedsAdapter mAdapter;
-//        Constant for ComposeGistFragment's tag.
     private static final String DIALOG_COMPOSE = "DialogCompose";
 //    The target fragment can use the request code to identify which fragment is reporting back.
     private static final int REQUEST_FEED = 0;
@@ -49,6 +49,17 @@ public class FeedsListFragment extends Fragment {
         updateUI();
         return view;
     }
+
+   /* @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (resultCode != Activity.RESULT_OK){
+            return;
+        }
+        if (requestCode == REQUEST_FEED){
+            String feed = (String) data.getSerializableExtra(ComposeGistFragment.EXTRA_FEED);
+            mFeed.setFeed(feed);
+        }
+    }*/
 
     private void updateUI() {
         FeedsLab feedsLab = FeedsLab.get(getActivity());
@@ -102,37 +113,12 @@ public class FeedsListFragment extends Fragment {
                 android.support.v4.app.FragmentManager manager = getFragmentManager();
                 ComposeGistFragment dialog = new ComposeGistFragment();
 
-//                Set this fragment as the target fragment.ie changes made to the dialog are shown here.
+//                Set this fragment as the target fragment. ie changes made to the dialog are shown here.
                 dialog.setTargetFragment(FeedsListFragment.this, REQUEST_FEED);
                 dialog.show(manager, DIALOG_COMPOSE);
             }
         });
     }
-
-/*
-
-//    Creating a circle-shaped bitmap.
-    private Bitmap getCircleBitmap(Bitmap bitmap){
-        final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        final Canvas canvas = new Canvas(output);
-        final int color = Color.RED;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        final RectF rectF = new RectF(rect);
-//        final OvalShape ovalShape = new OvalShape();
-
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawOval(rectF, paint);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
-        bitmap.recycle();
-
-        return output;
-    }
-*/
-
 
 //            Defining the ViewHolder.
     private class FeedsHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -149,7 +135,6 @@ public class FeedsListFragment extends Fragment {
         public FeedsHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-
 
             Bitmap bm = BitmapFactory.decodeResource(getResources(), R.mipmap.simple_image);
             RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getContext().getResources(), bm);
