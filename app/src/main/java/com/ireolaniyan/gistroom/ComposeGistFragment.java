@@ -42,6 +42,7 @@ public class ComposeGistFragment extends DialogFragment {
                             }
                         })
                 .create();
+
     }
 
     private void sendResult(int resultCode, String feed){
