@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Gist Room</string>
+    <string name="app_name" translatable="false">gistroom</string>
     <string name="action_settings">Settings</string>
     <string name="message">Read and share stories</string>
     <string name="button">Start gisting!</string>
@@ -20,4 +20,8 @@
     <string name="search">Search</string>
 
     <string name="compose_gist_title">New Gist</string>
+    <string name="compose_gist_hint">What\'s the latest gist?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

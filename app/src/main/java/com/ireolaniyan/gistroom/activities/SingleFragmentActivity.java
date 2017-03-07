@@ -1,10 +1,10 @@
-package com.ireolaniyan.gistroom;
+package com.ireolaniyan.gistroom.activities;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,49 +13,36 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.ireolaniyan.gistroom.R;
+import com.ireolaniyan.gistroom.drawer.DrawerActivity;
+import com.ireolaniyan.gistroom.drawer.NotificationsFragment;
+
 /**
  * Created by Ire Olaniyan on 11/3/2016.
  */
-public abstract class SingleFragmentActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
-    public  FloatingActionButton fab;
+public abstract class SingleFragmentActivity extends DrawerActivity /*AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener*/{
+//    public  FloatingActionButton fab;
     protected abstract Fragment createFragment();
-//    Constant for ComposeGistFragment's tag.
-//    private static final String DIALOG_COMPOSE = "DialogCompose";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feeds);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        setContentView(R.layout.activity_feeds);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
 
-//                 Host the fragment.
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-//                 Retrieve FeedsFragment from the FragmentManager.
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-
-//         In case there's no fragment, create one.
         if (fragment == null) {
             fragment = createFragment();
-//             Create and Commit a fragment transaction.
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
 
-       fab = (FloatingActionButton) findViewById(R.id.fab);
-        /*fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-                ComposeGistFragment dialog = new ComposeGistFragment();
-                dialog.show(manager, DIALOG_COMPOSE);
-               *//* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*//*
-            }
-        });*/
+//       fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+       /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -65,11 +52,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
-        }
+        }*/
 
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -87,6 +74,9 @@ public abstract class SingleFragmentActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_notifications) {
+            NotificationsFragment notificationsFragment = new NotificationsFragment();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.fragment_container, notificationsFragment).commit();
             Toast.makeText(this, "Notifications", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_social) {
             Toast.makeText(this, "Social", Toast.LENGTH_SHORT).show();
@@ -104,5 +94,5 @@ public abstract class SingleFragmentActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+*/
 }

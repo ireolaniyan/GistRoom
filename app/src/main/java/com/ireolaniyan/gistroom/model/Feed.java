@@ -1,4 +1,4 @@
-package com.ireolaniyan.gistroom;
+package com.ireolaniyan.gistroom.model;
 
 import java.util.UUID;
 

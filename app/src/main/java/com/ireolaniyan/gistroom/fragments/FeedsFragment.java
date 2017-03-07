@@ -1,4 +1,4 @@
-package com.ireolaniyan.gistroom;
+package com.ireolaniyan.gistroom.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.ireolaniyan.gistroom.model.Feed;
+import com.ireolaniyan.gistroom.model.FeedsLab;
+import com.ireolaniyan.gistroom.R;
 
 import java.util.UUID;
 
@@ -33,7 +37,7 @@ public class FeedsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mFeed = new Feed();
+//        mFeed = new Feed();
 
         UUID feedId = (UUID) getArguments().getSerializable(ARG_FEED_ID);
         mFeed = FeedsLab.get(getActivity()).getFeed(feedId);

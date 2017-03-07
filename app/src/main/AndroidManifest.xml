@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,19 +19,25 @@
         </activity>
         <activity
             android:name=".signup.SignUpActivity"
-            android:label="SignInActivity"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".FeedsListActivity"
-            android:label="@string/title_activity_feedsList"
+            android:name=".activities.FeedsListActivity"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".FeedsActivity"
-            android:label="@string/title_activity_feeds"
+            android:name=".activities.FeedsActivity"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme"
-            android:parentActivityName=".FeedsListActivity"> <!-- Enabling hierarchical navigation-->
+            android:parentActivityName=".activities.FeedsListActivity"> <!-- Enabling hierarchical navigation -->
+        </activity>
+        <activity
+            android:name=".drawer.DrawerActivity"
+            android:label="Drawer"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".activities.FeedsListActivity">
         </activity>
     </application>
 

@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import com.ireolaniyan.gistroom.FeedsListActivity;
-import com.ireolaniyan.gistroom.MainActivity;
+import com.ireolaniyan.gistroom.activities.FeedsListActivity;
+import com.ireolaniyan.gistroom.activities.MainActivity;
 import com.ireolaniyan.gistroom.R;
 
 /**
@@ -15,6 +15,14 @@ public class SignUpActivity extends MainActivity {
     private Button mFacebookButton;
     private Button mTwitterButton;
 
+    private View.OnClickListener mButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent newIntent = new Intent(v.getContext(), FeedsListActivity.class);
+            startActivity(newIntent);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -23,19 +31,7 @@ public class SignUpActivity extends MainActivity {
         mFacebookButton = (Button) findViewById(R.id.facebook_button);
         mTwitterButton = (Button) findViewById(R.id.twitter_button);
 
-        mFacebookButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent newIntent = new Intent(v.getContext(), FeedsListActivity.class);
-                startActivity(newIntent);
-            }
-        });
-        mTwitterButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent newIntent = new Intent(v.getContext(), FeedsListActivity.class);
-                startActivity(newIntent);
-            }
-        });
+        mFacebookButton.setOnClickListener(mButtonClickListener);
+        mTwitterButton.setOnClickListener(mButtonClickListener);
     }
 }

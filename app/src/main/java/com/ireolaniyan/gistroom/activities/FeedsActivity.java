@@ -1,8 +1,11 @@
-package com.ireolaniyan.gistroom;
+package com.ireolaniyan.gistroom.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+
+import com.ireolaniyan.gistroom.fragments.FeedsFragment;
+
 import java.util.UUID;
 
 public class FeedsActivity extends SingleFragmentActivity {
@@ -22,8 +25,7 @@ public class FeedsActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
 //        return new FeedsFragment();
-        UUID feedId = (UUID) getIntent()
-                .getSerializableExtra(EXTRA_FEED_ID);
+        UUID feedId = (UUID) getIntent().getSerializableExtra(EXTRA_FEED_ID);
         return FeedsFragment.newInstance(feedId);
     }
 }

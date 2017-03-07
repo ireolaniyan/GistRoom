@@ -1,11 +1,12 @@
-package com.ireolaniyan.gistroom;
+package com.ireolaniyan.gistroom.model;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.EditText;
+
 import com.ireolaniyan.gistroom.database.FeedsBaseHelper;
-import com.ireolaniyan.gistroom.database.FeedsDbSchema;
 import com.ireolaniyan.gistroom.database.FeedsDbSchema.FeedTable;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ public class FeedsLab {
 
     private Context mContext;
     private SQLiteDatabase mDatabase;
+
+    public EditText mComposeGist;
 
     public static FeedsLab get(Context context){
         if (sFeedsLab == null){
